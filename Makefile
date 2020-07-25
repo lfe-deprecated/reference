@@ -25,6 +25,7 @@ init-lfe-rebar3:
 
 update-lfe-rebar3:
 	@git subtree pull \
+	   --m "Updated latest from lfe-rebar3." \
 	   --prefix lfe-rebar3 \
 	   $(LFE_REBAR3) \
 	   master \
