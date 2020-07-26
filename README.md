@@ -1,6 +1,4 @@
-# LFE Reference
-
-## About this Repository
+# About this Repository
 
 This repository is a collection of `git subtree`s for published LFE reference materials.
 
@@ -14,13 +12,13 @@ Developers and contributers should scroll to the bottom of this file to read ins
 
 ---
 
-## Published LFE Reference Materials
+# Published LFE Reference Materials
 
 This includes core LFE software documentation, tooling, libraries, applications, etc.
 
 If you are lookng for LFE books, guides, etc., you should visit [https://github.com/lfe/books](https://github.com/lfe/books).
 
-### `rebar3_lfe` Command Reference
+## `rebar3_lfe` Command Reference
 
 * [Official repository](https://github.com/cnbbooks/lfe-rebar3-command-reference.git)
 * [Submit request/feedback ticket](https://github.com/cnbbooks/lfe-rebar3-command-reference/issues/new)
@@ -28,7 +26,7 @@ If you are lookng for LFE books, guides, etc., you should visit [https://github.
 
 ---
 
-## Developer / Contributor Notes
+# Developer / Contributor Notes
 
 1. To update a reference, visit the repository for that reference (linked above).
 1. For the repository, and clone to your machine.
@@ -40,3 +38,11 @@ At this point, a reviewer will examine the change, provide feedback, and iterate
 Once approved, the changes will be merged to the `builder` branch and the reviewer will publish these changes to `master`.
 
 Then the reviewer will update the `master` branch that collects all publised LFE reference materials ([https://github.com/lfe/reference](https://github.com/lfe/reference)) and push that up to Github, at which point you changes will show up for the given reference.
+
+# Reviewer Notes
+
+When adding new refererence materials to the repo, be sure to run `make` first: this will remind you of the steps needed (i.e., updates to the `Makefile` and `README`).
+
+Once those changes are made, to add the actual content for new refererence material, run `make init-YOUR-REFERENCE`.
+
+To publish any changes made upstream (e.g., after the merging of a pull request), be sure to run `make update` in your working directoy of this project, and then `git push origin master`. After that, the latest version of all reference materials will be published.
