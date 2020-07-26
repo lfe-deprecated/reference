@@ -11,22 +11,26 @@ help:
 	@echo "the final HTML output of the generated document."
 	@echo
 
+LFE_REBAR3_REPO = https://github.com/cnbbooks/lfe-rebar3-command-reference.git
+LFE_REBAR3_DIR = lfe-rebar3
 
-update: update-lfe-rebar3
-
-LFE_REBAR3 = https://github.com/cnbbooks/lfe-rebar3-command-reference.git
-
-init-lfe-rebar3:
+init-$(LFE_REBAR3_DIR):
 	@git subtree add \
-	   --prefix lfe-rebar3 \
-	   $(LFE_REBAR3) \
+	   --prefix $(LFE_REBAR3_DIR) \
+	   $(LFE_REBAR3_REPO) \
 	   master \
 	   --squash
 
-update-lfe-rebar3:
+update-$(LFE_REBAR3_DIR):
 	@git subtree pull \
-	   --m "Updated latest from lfe-rebar3." \
-	   --prefix lfe-rebar3 \
-	   $(LFE_REBAR3) \
+	   --m "Updated latest from $(LFE_REBAR3_DIR)." \
+	   --prefix $(LFE_REBAR3_DIR) \
+	   $(LFE_REBAR3_REPO) \
 	   master \
 	   --squash
+
+update: \
+	update-$(LFE_REBAR3_DIR)
+
+publish: update
+	@git push origin master
