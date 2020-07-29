@@ -11,6 +11,8 @@ help:
 	@echo "the final HTML output of the generated document."
 	@echo
 
+# --- rebar3_lfe Command Reference targets -----------------------------------
+
 LFE_REBAR3_REPO = https://github.com/cnbbooks/lfe-rebar3-command-reference.git
 LFE_REBAR3_DIR = lfe-rebar3
 
@@ -28,6 +30,8 @@ update-$(LFE_REBAR3_DIR):
 	   $(LFE_REBAR3_REPO) \
 	   master \
 	   --squash
+
+# --- Genereal publishing targets -----------------------------
 
 update: \
 	update-$(LFE_REBAR3_DIR)
