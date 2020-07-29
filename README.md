@@ -1,8 +1,7 @@
 # About this Repository
 
-This repository is a collection of `git subtree`s for published LFE reference materials.
-
-Please do not issue pull requests against this repo, as it is essentially read-only.
+This repository is a collection of `git subtree`s for LFE reference materials
+published at [lfe.io/reference/lfe-rebar3/](https://lfe.io/reference/lfe-rebar3/).
 
 Acutal reference content is mainted in Markdown files in `builder` branches (see the repositories linked below). Content is generated in `master` branches. Pull requests need to be issued against the Markdown files in the `builder` branches below.
 
