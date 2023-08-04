@@ -5,14 +5,10 @@
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
     <title>REPL - The LFE rebar3 Plugin Command Reference</title>
-    
-    
 
 
     <!-- Custom HTML head -->
     
-
-
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta name="description" content="The reference documentation for the LFE rebar3 plugin">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,9 +23,7 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-    
     <link rel="stylesheet" href="../fonts/fonts.css">
-    
 
     <!-- Highlight.js Stylesheets -->
     <link rel="stylesheet" href="../highlight.css">
@@ -37,11 +31,8 @@
     <link rel="stylesheet" href="../ayu-highlight.css">
 
     <!-- Custom theme stylesheets -->
-    
     <link rel="stylesheet" href="../css/custom.css">
-    
 
-    
 </head>
 
 <body>
@@ -101,8 +92,7 @@
     <div id="page-wrapper" class="page-wrapper">
 
         <div class="page">
-            
-            <div id="menu-bar-hover-placeholder"></div>
+                        <div id="menu-bar-hover-placeholder"></div>
             <div id="menu-bar" class="menu-bar sticky bordered">
                 <div class="left-buttons">
                     <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
@@ -127,13 +117,11 @@
                         <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
                         </li>
                     </ul>
-                    
                     <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
                         aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
                         aria-controls="searchbar">
                         <i class="fa fa-search"></i>
                     </button>
-                    
                 </div>
 
                 <h1 class="menu-title">The LFE rebar3 Plugin Command Reference</h1>
@@ -142,15 +130,12 @@
                     <a href="../print.html" title="Print this book" aria-label="Print this book">
                         <i id="print-button" class="fa fa-print"></i>
                     </a>
-                    
                     <a href="https://github.com/lfe-rebar3/rebar3_lfe" title="Git repository" aria-label="Git repository">
                         <i id="git-repository-button" class="fa fa-github"></i>
                     </a>
-                    
                 </div>
             </div>
 
-            
             <div id="search-wrapper" class="hidden">
                 <form id="searchbar-outer" class="searchbar-outer">
                     <input type="search" name="search" id="searchbar" name="searchbar"
@@ -163,7 +148,6 @@
                     </ul>
                 </div>
             </div>
-            
 
             <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
             <script type="text/javascript">
@@ -176,31 +160,80 @@
 
             <div id="content" class="content">
                 <main>
-                    <h1><a class="header" href="#running-the-repl" id="running-the-repl">Running the REPL</a></h1>
+                    <h1 id="running-the-repl"><a class="header" href="#running-the-repl">Running the REPL</a></h1>
 <p>An LFE project and all of its dependencies may be interacted with via a REPL
 that is started with the LFE rebar3 plguin, as rebar3 sets all of the correct
 library locations for use by shells and REPLs.</p>
 <p>To start up a REPL:</p>
 <pre><code class="language-shell">rebar3 lfe repl
 </code></pre>
+<p>At which point you will be greeted with the familiar:</p>
+<pre><code class="language-text">Erlang/OTP 25 [erts-13.2.2.2] [source] [64-bit] [smp:10:10] [ds:10:10:10] [async-threads:1] [jit]
+
+   ..-~.~_~---..
+  (      \\     )    |   A Lisp-2+ on the Erlang VM
+  |`-.._/_\\_.-':    |   Type (help) for usage info.
+  |         g |_ \   |
+  |        n    | |  |   Docs: http://docs.lfe.io/
+  |       a    / /   |   Source: http://github.com/lfe/lfe
+   \     l    |_/    |
+    \   r     /      |   LFE v2.1.2 (abort with ^C; enter JCL with ^G)
+     `-E___.-'
+
+lfe&gt;
+</code></pre>
+<div class="alert alert-warning">
+  <h4 class="alert-heading">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    Known Issue: Erlang 26+!
+  </h4>
+  <p class="mb-0">
+    Erlang 26.0 completely refactored its support for shells. While a fix was released for LFE-proper's REPL, that same fix does not work for the rebar3 LFE REPL. To follow the progress, you can subscribe to this ticket: <a href="https://github.com/lfe/rebar3/issues/79">https://github.com/lfe/rebar3/issues/79</a>.
+  </p>
+</div>
+<p>The LFE banner is highly configurable in in rebar3_lfe and accepts the following configuration in your project's <code>rebar.config</code> file:</p>
+<pre><code class="language-erlang">{lfe, [
+   {repl, [
+     {nobanner, false},
+     {version, &quot;9999.2&quot;},
+     {quit_message, &quot;You can never LEEEEEAVE!&quot;},
+     {banner_template, &quot;Weeee!~nLFE v~s ~s~n&quot;}
+   ]}
+]}.
+</code></pre>
+<p>A project configuration with those values would have a banner like the following:</p>
+<pre><code class="language-text">Erlang/OTP 25 [erts-13.2.2.2] [source] [64-bit] [smp:10:10] [ds:10:10:10] [async-threads:1] [jit]
+
+Weeee!
+LFE v9999.2 You can never LEEEEEAVE!
+lfe&gt;
+</code></pre>
+<p>To disable the banner, use a configuration like this:</p>
+<pre><code class="language-text">{lfe, [
+   {repl, [
+     {nobanner, true}
+   ]}
+]}.
+</code></pre>
+<p>Which would give:</p>
+<pre><code class="language-text">Erlang/OTP 25 [erts-13.2.2.2] [source] [64-bit] [smp:10:10] [ds:10:10:10] [async-threads:1] [jit]
+
+lfe&gt;
+</code></pre>
 
                 </main>
 
                 <nav class="nav-wrapper" aria-label="Page navigation">
                     <!-- Mobile navigation buttons -->
-                    
                     <a rel="prev" href="../command-ref/compiling-packages.html" class="mobile-nav-chapters previous"
                         title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    
 
-                    
                     <a rel="next" href="../command-ref/testing/index.html" class="mobile-nav-chapters next"
                         title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                    
 
                     <div style="clear: both"></div>
                 </nav>
@@ -208,51 +241,37 @@ library locations for use by shells and REPLs.</p>
         </div>
 
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
-            
             <a rel="prev" href="../command-ref/compiling-packages.html" class="nav-chapters previous" title="Previous chapter"
                 aria-label="Previous chapter" aria-keyshortcuts="Left">
                 <i class="fa fa-angle-left"></i>
             </a>
-            
 
-            
             <a rel="next" href="../command-ref/testing/index.html" class="nav-chapters next" title="Next chapter"
                 aria-label="Next chapter" aria-keyshortcuts="Right">
                 <i class="fa fa-angle-right"></i>
             </a>
-            
         </nav>
 
     </div>
 
-    
 
-    
 
-    
 
-    
     <script type="text/javascript">
         window.playground_copyable = true;
     </script>
-    
 
-    
 
-    
     <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-    
 
     <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
     <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- Custom JS scripts -->
-    
 
-    
 
 </body>
 
